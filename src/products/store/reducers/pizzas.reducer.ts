@@ -7,38 +7,7 @@ export interface PizzaState {
   loading: boolean;
 }
 export const initialState: PizzaState = {
-  data: [
-    {
-      name: "Blazin' Infernod",
-      toppings: [
-        {
-          id: 9,
-          name: "pepper"
-        },
-        {
-          id: 3,
-          name: "basil"
-        },
-        {
-          id: 4,
-          name: "chili"
-        },
-        {
-          id: 7,
-          name: "olive"
-        },
-        {
-          id: 2,
-          name: "bacon"
-        },
-        {
-          id: 8,
-          name: "onion"
-        }
-      ],
-      id: 1
-    }
-  ],
+  data: [],
   loaded: false,
   loading: false
 };
@@ -55,10 +24,13 @@ export function reducer(
       };
     }
     case fromPizzas.LOAD_PIZZAS_SUCCESS: {
+      const data = action.payload;
+      console.log(data);
       return {
         ...state,
         loading: false,
-        loaded: true
+        loaded: true,
+        data
       };
     }
     case fromPizzas.LOAD_PIZZAS_FAIL: {
